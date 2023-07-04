@@ -1,0 +1,19 @@
+plugins {
+	id 'java'
+}
+
+archivesBaseName = "reproducible-builds-test"
+version = "1.0.0"
+group = "net.lostluma"
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    reproducibleFileOrder = true
+    preserveFileTimestamps = false
+}
+
+jar {
+  manifest {
+        attributes "Main-Class": "Main"
+        // attributes "Class-Path": configurations.collect { it.absolutePath }.join(" ")
+    }
+}
